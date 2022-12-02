@@ -7,9 +7,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1562145795075466058, guid: 9a89ca4c59506e947b1a3fbb244a7e6a, type: 3}
+      propertyPath: m_text
+      value: Fechar
+      objectReference: {fileID: 0}
     - target: {fileID: 8767244151376222283, guid: 9a89ca4c59506e947b1a3fbb244a7e6a, type: 3}
       propertyPath: m_Name
-      value: CreditsModal
+      value: CreditsModal Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8767244151376222292, guid: 9a89ca4c59506e947b1a3fbb244a7e6a, type: 3}
       propertyPath: m_Pivot.x

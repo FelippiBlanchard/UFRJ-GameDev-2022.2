@@ -1139,14 +1139,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3073097456721204274}
     m_Modifications:
-    - target: {fileID: 580759708237215735, guid: c1525f40fe2de454994a18d15198f069, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 11400000, guid: d1e1447c3eb19ca48ac9152794561479, type: 2}
-    - target: {fileID: 580759708237215735, guid: c1525f40fe2de454994a18d15198f069, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Trigger
-      objectReference: {fileID: 0}
     - target: {fileID: 4448119982631684973, guid: c1525f40fe2de454994a18d15198f069, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1242,7 +1234,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4448119982631684978, guid: c1525f40fe2de454994a18d15198f069, type: 3}
   m_PrefabInstance: {fileID: 930965824}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &930965826
+--- !u!114 &930965827
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
