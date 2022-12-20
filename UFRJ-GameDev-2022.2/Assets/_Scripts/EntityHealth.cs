@@ -44,11 +44,14 @@ public class EntityHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        onEntityHurt.Invoke();
 
         if (health <= 0)
         {
             Die();
+        }
+        else
+        {
+            onEntityHurt.Invoke();
         }
     }
 
