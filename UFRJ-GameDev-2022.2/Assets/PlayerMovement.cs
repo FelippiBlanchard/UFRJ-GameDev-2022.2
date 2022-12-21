@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -29,8 +30,14 @@ public class PlayerMovement : MonoBehaviour
     private bool canCrouch = true;
     private float crouchSpeed = 0.05f;
 
+    //Events
+    public UnityEvent onPlayerCrouch;
+    public UnityEvent onPlayerJog;
+    public UnityEvent onPlayerSprint;
+    public UnityEvent onPlayerIdle;
 
-// Start is called before the first frame update
+
+    // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -140,6 +147,8 @@ public class PlayerMovement : MonoBehaviour
     private void Idle() {
         anim.SetFloat("SpeedX", 0, 0.1f, Time.deltaTime);
         anim.SetFloat("SpeedZ", 0, 0.1f, Time.deltaTime);
+
+        onPlayerIdle.Invoke();
     }
     //Jog
     private void Jog() {
@@ -166,6 +175,8 @@ public class PlayerMovement : MonoBehaviour
             anim.SetFloat("SpeedX", 0.5f, 0.1f, Time.deltaTime);
             anim.SetFloat("SpeedZ", 0, 0.1f, Time.deltaTime);
         }
+
+        onPlayerJog.Invoke();
     }
     //Sprint
     private void Sprint() {
@@ -192,12 +203,16 @@ public class PlayerMovement : MonoBehaviour
             anim.SetFloat("SpeedX", 1, 0.1f, Time.deltaTime);
             anim.SetFloat("SpeedZ", 0, 0.1f, Time.deltaTime);
         }
+
+        onPlayerSprint.Invoke();
     }
 
     //Crouch
     private void CrouchIdle() {
         anim.SetFloat("CrouchSpeedX", 0, 0.1f, Time.deltaTime);
         anim.SetFloat("CrouchSpeedZ", 0, 0.1f, Time.deltaTime);
+
+        onPlayerIdle.Invoke();
     }
     private void CrouchMove() {
         if (Input.GetKey("w")) {
@@ -223,6 +238,8 @@ public class PlayerMovement : MonoBehaviour
             anim.SetFloat("CrouchSpeedX", 1, 0.1f, Time.deltaTime);
             anim.SetFloat("CrouchSpeedZ", 0, 0.1f, Time.deltaTime);
         }
+
+        onPlayerCrouch.Invoke();
     }
     private void CrouchDown() {
         cc.height = cc.height/2;
