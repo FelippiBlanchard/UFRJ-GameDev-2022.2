@@ -21,6 +21,8 @@ public class EnemyFollowPlayer : MonoBehaviour
     [SerializeField] UnityEvent onEnemyTrigger;
     [SerializeField] UnityEvent onEnemyUntrigger;
 
+    [SerializeField] Animator animator;
+
     private void Start()
     {
         StartPatrol();
@@ -44,12 +46,14 @@ public class EnemyFollowPlayer : MonoBehaviour
         while (_patrolling)
         {
             var index = _currentPatrolIndex % _patrolPositions.Length;
-         
-            transform.position = Vector3.MoveTowards(transform.position, _patrolPositions[index].position, _speedPatrol);  
-            
+
+            transform.LookAt(_patrolPositions[index].position);
+            transform.position = Vector3.MoveTowards(transform.position, _patrolPositions[index].position, _speedPatrol);
+            animator.Play("Male_Walk");
             if (transform.position.x == _patrolPositions[index].position.x && transform.position.z == _patrolPositions[index].position.z)
             {
                 _currentPatrolIndex++;
+                animator.Play("Male Idle");
                 yield return new WaitForSeconds(_timeStoppedAtPatrolPosition);
             }
             yield return null;
@@ -58,9 +62,11 @@ public class EnemyFollowPlayer : MonoBehaviour
 
     private IEnumerator AttackTarget(GameObject target)
     {
+        transform.LookAt(target.transform.position);
         target.GetComponent<EntityHealth>().TakeDamage(34);
 
         _attacking = true;
+        animator.Play("Male Attack 1");
         yield return new WaitForSeconds(_timeStoppedAfterAttack);
         _attacking = false;
     }
@@ -79,6 +85,8 @@ public class EnemyFollowPlayer : MonoBehaviour
     {
         if (other.CompareTag("Player") && !_attacking)
         {
+            transform.LookAt(other.transform.position);
+            animator.Play("Male Sprint");
             transform.position = Vector3.MoveTowards(transform.position, other.transform.position, _speedFollowPlayer); 
         }
     }
