@@ -13,7 +13,7 @@ public class PlayerFootsteps : MonoBehaviour
     {
         if (!footstepAudio.isPlaying)
         {
-            footstepAudio.PlayDelayed(0.15f);
+            footstepAudio.PlayDelayed(jogDelay);
         }
     }
 
@@ -21,7 +21,7 @@ public class PlayerFootsteps : MonoBehaviour
     {
         if (!footstepAudio.isPlaying)
         {
-            footstepAudio.PlayDelayed(0.1f);
+            footstepAudio.PlayDelayed(sprintDelay);
         }
     }
 
@@ -29,7 +29,7 @@ public class PlayerFootsteps : MonoBehaviour
     {
         if (!footstepAudio.isPlaying)
         {
-            footstepAudio.PlayDelayed(0.3f);
+            footstepAudio.PlayDelayed(crouchDelay);
         }
     }
 }
