@@ -23,12 +23,12 @@ public class PlayerMovement : MonoBehaviour
     //Ground movement
     private float SpeedX;
     private float SpeedZ;
-    private float jogSpeed = 0.1f;
-    private float sprintSpeed = 0.2f;
+    [SerializeField] private float jogSpeed = 0.1f;
+    [SerializeField] private float sprintSpeed = 0.2f;
 
     //Crouch
     private bool canCrouch = true;
-    private float crouchSpeed = 0.05f;
+    [SerializeField] private float crouchSpeed = 0.05f;
 
     //Events
     public UnityEvent onPlayerCrouch;
