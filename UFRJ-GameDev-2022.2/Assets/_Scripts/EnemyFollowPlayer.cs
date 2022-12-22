@@ -1,44 +1,102 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyFollowPlayer : MonoBehaviour
 {
 
-    private bool isFollowing;
+    [SerializeField] private float _speedFollowPlayer;
+    [SerializeField] private float _speedPatrol;
+    [SerializeField] private float _timeStoppedAtPatrolPosition;
+    [SerializeField] private float _timeStoppedAfterAttack;
 
-    private Coroutine stopFollowCoroutine;
+    [SerializeField] private Transform[] _patrolPositions;
+    private int _currentPatrolIndex;
+    private bool _patrolling = true;
+    private bool _attacking;
+    private Coroutine _currentCOPatrol;
+    
+    [SerializeField] UnityEvent onEnemyTrigger;
+    [SerializeField] UnityEvent onEnemyUntrigger;
 
-    [SerializeField] private float stopFollowDelay;
-
-    public void StartFollow()
+    private void Start()
     {
-        if (stopFollowCoroutine != null)
-        {
-            StopCoroutine(stopFollowCoroutine);
+        StartPatrol();
+    }
 
-            stopFollowCoroutine = null;
+    private void StopPatrol()
+    {
+        StopCoroutine(_currentCOPatrol);
+    }
+    private void StartPatrol()
+    {
+        _currentCOPatrol = StartCoroutine(CO_Patrol());
+    }
+
+    private IEnumerator CO_Patrol()
+    {
+        if (_patrolPositions.Length <= 0)
+        {
+            _patrolling = false;
         }
-
-        if (!isFollowing)
+        while (_patrolling)
         {
-            isFollowing = true;
-            // TODO fazer o inimigo se movimentar até o player
-            Debug.Log("Following");
+            var index = _currentPatrolIndex % _patrolPositions.Length;
+         
+            transform.position = Vector3.MoveTowards(transform.position, _patrolPositions[index].position, _speedPatrol);  
+            
+            if (transform.position.x == _patrolPositions[index].position.x && transform.position.z == _patrolPositions[index].position.z)
+            {
+                _currentPatrolIndex++;
+                yield return new WaitForSeconds(_timeStoppedAtPatrolPosition);
+            }
+            yield return null;
         }
     }
 
-    public void StopFollow()
+    private IEnumerator AttackTarget(GameObject target)
     {
-        stopFollowCoroutine = StartCoroutine(StopFollowAfterTime(stopFollowDelay));
+        target.GetComponent<EntityHealth>().TakeDamage(34);
+
+        _attacking = true;
+        yield return new WaitForSeconds(_timeStoppedAfterAttack);
+        _attacking = false;
     }
 
-    IEnumerator StopFollowAfterTime(float time)
-    {
-        yield return new WaitForSeconds(time);
 
-        isFollowing = false;
-        // TODO fazer o inimigo voltar para posição de ronda
-        Debug.Log("Stopped Following");
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            StopPatrol();
+            onEnemyTrigger.Invoke();
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player") && !_attacking)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, other.transform.position, _speedFollowPlayer); 
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            StartPatrol();
+            onEnemyUntrigger.Invoke();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Player") && !_attacking)
+        {
+            StartCoroutine(AttackTarget(collision.collider.gameObject));
+        }
     }
 }
