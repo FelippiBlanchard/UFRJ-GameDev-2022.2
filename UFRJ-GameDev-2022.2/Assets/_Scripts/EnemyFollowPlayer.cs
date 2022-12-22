@@ -49,11 +49,11 @@ public class EnemyFollowPlayer : MonoBehaviour
 
             transform.LookAt(_patrolPositions[index].position);
             transform.position = Vector3.MoveTowards(transform.position, _patrolPositions[index].position, _speedPatrol);
-            animator.Play("Male_Walk");
+            animator.Play("GhostAnimation");
             if (transform.position.x == _patrolPositions[index].position.x && transform.position.z == _patrolPositions[index].position.z)
             {
                 _currentPatrolIndex++;
-                animator.Play("Male Idle");
+                animator.Play("GhostAnimation");
                 yield return new WaitForSeconds(_timeStoppedAtPatrolPosition);
             }
             yield return null;
@@ -86,8 +86,17 @@ public class EnemyFollowPlayer : MonoBehaviour
         if (other.CompareTag("Player") && !_attacking)
         {
             transform.LookAt(other.transform.position);
-            animator.Play("Male Sprint");
-            transform.position = Vector3.MoveTowards(transform.position, other.transform.position, _speedFollowPlayer); 
+            animator.Play("GhostAnimation");
+            Debug.Log(Vector3.Distance(transform.position, other.transform.position));
+
+            if (Vector3.Distance(transform.position, other.transform.position) > 3)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, other.transform.position, _speedFollowPlayer);    
+            }
+            else
+            {
+                StartCoroutine(AttackTarget(other.gameObject));
+            }
         }
     }
 
@@ -99,7 +108,7 @@ public class EnemyFollowPlayer : MonoBehaviour
             onEnemyUntrigger.Invoke();
         }
     }
-
+/*
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player") && !_attacking)
@@ -107,4 +116,6 @@ public class EnemyFollowPlayer : MonoBehaviour
             StartCoroutine(AttackTarget(collision.collider.gameObject));
         }
     }
+    */
+    
 }

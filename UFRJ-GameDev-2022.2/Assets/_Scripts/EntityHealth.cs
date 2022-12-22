@@ -9,6 +9,7 @@ public class EntityHealth : MonoBehaviour
 
     public UnityEvent onEntityDeath;
     public UnityEvent onEntityHurt;
+    public UnityEvent onEntityHurt2;
     public UnityEvent onEntityHeal;
 
     int health;
@@ -51,7 +52,14 @@ public class EntityHealth : MonoBehaviour
         }
         else
         {
-            onEntityHurt.Invoke();
+            if (health >= 50)
+            {
+                onEntityHurt.Invoke();   
+            }
+            else
+            {
+                onEntityHurt2.Invoke(); 
+            }
         }
     }
 

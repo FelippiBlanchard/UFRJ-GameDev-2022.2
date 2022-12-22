@@ -8,8 +8,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/MenuScene.unity
     guid: 2e88e2c2d17c10b43ab2a5b15ff8bd00
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/GameScene.unity
     guid: 67e20cae84ac6704abc6da3b53ecc31b
+  - enabled: 1
+    path: Assets/SOUTH PACIFIC VILLAGE/South_Pacific_Town.unity
+    guid: 1dc70c36e60b0ea4199c52ee8c09ee37
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}

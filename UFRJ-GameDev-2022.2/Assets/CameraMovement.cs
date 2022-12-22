@@ -26,7 +26,16 @@ public class CameraMovement : MonoBehaviour
         _cameraOffset = playerTransform.position - transform.position;
         pivot.transform.position = playerTransform.transform.position;
 
+    }
+
+    public void LockCursor()
+    {
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void UnlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Update is called once per frame
