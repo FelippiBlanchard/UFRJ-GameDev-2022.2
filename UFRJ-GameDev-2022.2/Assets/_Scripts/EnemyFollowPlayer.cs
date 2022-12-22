@@ -49,11 +49,11 @@ public class EnemyFollowPlayer : MonoBehaviour
 
             transform.LookAt(_patrolPositions[index].position);
             transform.position = Vector3.MoveTowards(transform.position, _patrolPositions[index].position, _speedPatrol);
-            animator.Play("GhostAnimation");
+            animator.Play("Male_Walk");
             if (transform.position.x == _patrolPositions[index].position.x && transform.position.z == _patrolPositions[index].position.z)
             {
                 _currentPatrolIndex++;
-                animator.Play("GhostAnimation");
+                animator.Play("Male Idle");
                 yield return new WaitForSeconds(_timeStoppedAtPatrolPosition);
             }
             yield return null;
@@ -86,7 +86,7 @@ public class EnemyFollowPlayer : MonoBehaviour
         if (other.CompareTag("Player") && !_attacking)
         {
             transform.LookAt(other.transform.position);
-            animator.Play("GhostAnimation");
+            animator.Play("Male Sprint");
             Debug.Log(Vector3.Distance(transform.position, other.transform.position));
 
             if (Vector3.Distance(transform.position, other.transform.position) > 3)
@@ -95,6 +95,7 @@ public class EnemyFollowPlayer : MonoBehaviour
             }
             else
             {
+                animator.Play("Male Idle");
                 StartCoroutine(AttackTarget(other.gameObject));
             }
         }
