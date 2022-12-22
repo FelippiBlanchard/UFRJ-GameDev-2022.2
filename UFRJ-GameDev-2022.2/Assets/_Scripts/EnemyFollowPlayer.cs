@@ -17,6 +17,7 @@ public class EnemyFollowPlayer : MonoBehaviour
     private bool _patrolling = true;
     private bool _attacking;
     private Coroutine _currentCOPatrol;
+    private Coroutine _currentCOFollow;
     
     [SerializeField] UnityEvent onEnemyTrigger;
     [SerializeField] UnityEvent onEnemyUntrigger;
@@ -78,6 +79,10 @@ public class EnemyFollowPlayer : MonoBehaviour
         {
             StopPatrol();
             onEnemyTrigger.Invoke();
+            if (_currentCOFollow != null)
+            {
+                StopCoroutine(_currentCOFollow);
+            }
         }
     }
 
@@ -101,12 +106,24 @@ public class EnemyFollowPlayer : MonoBehaviour
         }
     }
 
+    private IEnumerator CO_FollowLittleMoreAndPatrol(Transform target)
+    {
+        var cont = 0f;
+        while (cont <= 1)
+        {
+            cont += Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, target.position, _speedFollowPlayer);
+            yield return null;
+        }
+        StartPatrol();
+        onEnemyUntrigger.Invoke();
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            StartPatrol();
-            onEnemyUntrigger.Invoke();
+            _currentCOFollow = StartCoroutine(CO_FollowLittleMoreAndPatrol(other.transform));
         }
     }
 /*

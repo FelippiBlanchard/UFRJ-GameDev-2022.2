@@ -14,7 +14,7 @@ public class PlayerAction : MonoBehaviour
 
     [SerializeField] private UnityEvent evento;
     [SerializeField] private UnityEvent findPage1, findPage2, findPage3, findPage4, findPage5, findPage6;
-    
+    [SerializeField] private UnityEvent onFindPage;
 
     [SerializeField] private UnityEvent fimDeJogo;
 
@@ -37,34 +37,33 @@ public class PlayerAction : MonoBehaviour
     private void OnTriggerEnter(Collider obj) {
         //Find treasure chest
         if (obj.tag == "Legendary Treasure") {
-            //play chest animation (open)
             evento.Invoke();
         }
         //Find capitain diary pages
         if (obj.tag == "Diary Page 1") {
-            //play chest animation (open)
             findPage1.Invoke();
+            onFindPage.Invoke();
             Debug.Log("page1");
         }
         else if (obj.tag == "Diary Page 2") {
-            //play chest animation (open)
             findPage2.Invoke();
+            onFindPage.Invoke();
         }
         else if (obj.tag == "Diary Page 3") {
-            //play chest animation (open)
             findPage3.Invoke();
+            onFindPage.Invoke();
         }
         else if (obj.tag == "Diary Page 4") {
-            //play chest animation (open)
             findPage4.Invoke();
+            onFindPage.Invoke();
         }
         else if (obj.tag == "Diary Page 5") {
-            //play chest animation (open)
             findPage5.Invoke();
+            onFindPage.Invoke();
         }
         else if (obj.tag == "Diary Page 6") {
-            //play chest animation (open)
             findPage6.Invoke();
+            onFindPage.Invoke();
         }
     }
 

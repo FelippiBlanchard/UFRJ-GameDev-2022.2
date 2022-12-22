@@ -83,6 +83,10 @@ PrefabInstance:
       propertyPath: idleAnimator
       value: 
       objectReference: {fileID: 200827914509977989}
+    - target: {fileID: 5265924565913436980, guid: 183c3713dcb2b3747abbbed5f9a6b212, type: 3}
+      propertyPath: _speedFollowPlayer
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 183c3713dcb2b3747abbbed5f9a6b212, type: 3}
 --- !u!4 &5739620404856255352 stripped

@@ -318,6 +318,27 @@ MonoBehaviour:
           m_StringArgument: Activate
           m_BoolArgument: 0
         m_CallState: 2
+  findPage1:
+    m_PersistentCalls:
+      m_Calls: []
+  findPage2:
+    m_PersistentCalls:
+      m_Calls: []
+  findPage3:
+    m_PersistentCalls:
+      m_Calls: []
+  findPage4:
+    m_PersistentCalls:
+      m_Calls: []
+  findPage5:
+    m_PersistentCalls:
+      m_Calls: []
+  findPage6:
+    m_PersistentCalls:
+      m_Calls: []
+  onFindPage:
+    m_PersistentCalls:
+      m_Calls: []
   fimDeJogo:
     m_PersistentCalls:
       m_Calls: []
@@ -1611,6 +1632,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2185223418819378397}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SwimmingSlow
+          m_BoolArgument: 0
+        m_CallState: 2
   onEntityHurt:
     m_PersistentCalls:
       m_Calls:
@@ -1626,6 +1659,18 @@ MonoBehaviour:
           m_StringArgument: PlayerHurt
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2185223418819378397}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Standing Dodge Backward
+          m_BoolArgument: 0
+        m_CallState: 2
   onEntityHurt2:
     m_PersistentCalls:
       m_Calls:
@@ -1639,6 +1684,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: PlayerHurt2
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2185223418819378397}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Standing Dodge Backward
           m_BoolArgument: 0
         m_CallState: 2
   onEntityHeal:
@@ -3151,6 +3208,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1214125892, guid: 52c917bfeb76f994aa8e6cd40aa6e1d5, type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675714697, guid: 52c917bfeb76f994aa8e6cd40aa6e1d5, type: 3}
+      propertyPath: m_BlocksRaycasts
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2107333447664596958, guid: 52c917bfeb76f994aa8e6cd40aa6e1d5, type: 3}
