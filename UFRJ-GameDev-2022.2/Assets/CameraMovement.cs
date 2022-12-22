@@ -8,12 +8,12 @@ public class CameraMovement : MonoBehaviour
     public Transform pivot;
     private Vector3 _cameraOffset;
 
-    private float rotationSpeed = 5;
+    private float rotationSpeed = 1;
 
-    private float maxViewAngle = 30f;
+    private float maxViewAngle = 70f;
     private float minViewAngle = -30;
 
-    private bool invertYAxis = false;
+    private bool invertYAxis = true;
     private Quaternion rotation;
 
     // Start is called before the first frame update
